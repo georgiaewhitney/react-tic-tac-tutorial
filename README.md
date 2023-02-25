@@ -1,4 +1,4 @@
-# React Tic-tac-tutorial
+# React Tic-Tac-Tutorial
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

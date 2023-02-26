@@ -10,3 +10,6 @@ root.render(
     <App />
   </StrictMode>
 );
+
+// index.js is the bridge between the components and the web browser
+// <StrictMode> is a built-in component that is a tool to catch any potential issues and improve code quality

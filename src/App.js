@@ -15,7 +15,8 @@ export default function Board() {
   // calling setSquares lets React know state of component has changes. Triggers a re-render of components that uses squares state (Board) as well as child components (Square)
   function handleClick(i) {
     // early return allows us to check if state has already been adjusted
-    if (squares[i]) {
+    // also check if player has won
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     const nextSquares = squares.slice();
@@ -29,24 +30,35 @@ export default function Board() {
     console.log(`Square ${i} clicked`);
   }
 
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  } else {
+    status = `Next player: ${xIsNext ? "X" : "O"}`;
+  }
+
   // {squares[x] declares value prop down to square component}
   //
   return (
     <>
-      <div className="boardRow">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="boardRow">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="boardRow">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      <div>
+        <div className="status">{status}</div>
+        <div className="boardRow">
+          <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+          <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+          <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        </div>
+        <div className="boardRow">
+          <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+          <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+          <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        </div>
+        <div className="boardRow">
+          <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+          <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+          <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        </div>
       </div>
     </>
   );
@@ -81,3 +93,36 @@ The squares state of the Board component was updated, so the Board and all of it
 
 In the end the user sees that the upper left square has changed from empty to having a X after clicking it.
 */
+
+/* 
+calculateWinner func
+It then checks whether the values at indices a, b, and c in the squares array are all equal and non-null. If they are, it means that the squares at these indices contain the same value, and thus there is a winner. The function then returns the value of the winning square (either "X" or "O").
+
+if:
+if a is truthy, and a === b, and a === c > winner
+at any point during this statement a falsy appears, it'll return false
+
+If none of the winning combinations of squares contain the same value, the function returns null, indicating that there is no winner.
+
+In summary, the calculateWinner function takes an array of Tic Tac Toe squares as input, and checks if any of the possible winning combinations of squares contain the same value. If a winner is found, it returns the value of the winning square. If there is no winner, it returns null.
+*/
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}

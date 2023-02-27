@@ -136,11 +136,11 @@ export default function Game() {
   function handlePlay(nextSquares) {
     // create handlePlay function
   }
-  // edit board props
+  
   return (
     <div className="game">
       <div className="game-board">
-        <Board />
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
         <ol>

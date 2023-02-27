@@ -132,7 +132,10 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length -1];
 
-  // create handlePlay function
+  
+  function handlePlay(nextSquares) {
+    // create handlePlay function
+  }
   // edit board props
   return (
     <div className="game">

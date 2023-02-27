@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Board() {
+function Board() {
   // set X first by default
   const [xIsNext, setXIsNext] = useState(true);
   // Array(9).fill(null) creates an array with 9 elements and sets each to null
@@ -125,4 +125,19 @@ function calculateWinner(squares) {
     }
   }
   return null;
+}
+
+export default function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>
+          {/*to-do*/}
+        </ol>
+      </div>
+    </div>
+  )
 }

@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-function Board() {
+// add board component params -- watching play
+function Board({ xIsNext, squares, onPlay }) {
   // set X first by default
-  const [xIsNext, setXIsNext] = useState(true);
+  // remove usestate for playback component
+  // const [xIsNext, setXIsNext] = useState(true);
   // Array(9).fill(null) creates an array with 9 elements and sets each to null
   // the useState around it declares a squares state variable initially set to that array
   // each array entry corresponds to square value

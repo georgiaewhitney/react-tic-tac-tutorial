@@ -1,6 +1,7 @@
 # React Tic-Tac-Tutorial
 
-> Bookmark: allow Game component to read previous moves / allow functionality to reverse game moves
+> Bookmark: Showing the past moves
+> Remember: Clear comments into comment branch
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).

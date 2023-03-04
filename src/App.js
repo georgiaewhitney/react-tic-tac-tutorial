@@ -11,7 +11,7 @@ function Board({ xIsNext, squares, onPlay }) {
 
   // each array entry corresponds to square value
   // later on will look like ['O', 'X', 'null', 'X' etc]
-  const [squares, setSquares] = useState(Array(9).fill(null));
+  // const [squares, setSquares] = useState(Array(9).fill(null));
 
   // creates copy of squares array (nextSquares) with slice() method
   // slice is changing data without mutating - data can be reused later
@@ -146,7 +146,7 @@ export default function Game() {
   // will be called by board component to update the game
   function handlePlay(nextSquares) {
     // creates new array containing all history items
-    // spread syntax as "enumerate all items in"
+    // spread syntax as "enumerate all items in history"
     setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }

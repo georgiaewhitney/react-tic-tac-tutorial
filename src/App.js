@@ -6,7 +6,9 @@ function Board({ xIsNext, squares, onPlay }) {
   // remove usestate for playback component
   // const [xIsNext, setXIsNext] = useState(true);
   // Array(9).fill(null) creates an array with 9 elements and sets each to null
+
   // the useState around it declares a squares state variable initially set to that array
+
   // each array entry corresponds to square value
   // later on will look like ['O', 'X', 'null', 'X' etc]
   const [squares, setSquares] = useState(Array(9).fill(null));
@@ -15,10 +17,12 @@ function Board({ xIsNext, squares, onPlay }) {
   // slice is changing data without mutating - data can be reused later
   // handleClick updates nextSquares with X to square index [i]
   // calling setSquares lets React know state of component has changes. Triggers a re-render of components that uses squares state (Board) as well as child components (Square)
+  
   function handleClick(i) {
     // early return allows us to check if state has already been adjusted
     // also check if player has won
-    if (squares[i] || calculateWinner(squares)) {
+
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
     const nextSquares = squares.slice();
@@ -27,6 +31,7 @@ function Board({ xIsNext, squares, onPlay }) {
     } else {
       nextSquares[i] = "O";
     }
+    onPlay(nextSquares)
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
     console.log(`Square ${i} clicked`);
@@ -130,13 +135,20 @@ function calculateWinner(squares) {
 }
 
 export default function Game() {
+  // determining next player
   const [xIsNext, setXIsNext] = useState(true);
+  // tracking move history
   const [history, setHistory] = useState([Array(9).fill(null)]);
+
+  // read last squares array from the history
   const currentSquares = history[history.length -1];
 
-  
+  // will be called by board component to update the game
   function handlePlay(nextSquares) {
-    // create handlePlay function
+    // creates new array containing all history items
+    // spread syntax as "enumerate all items in"
+    setHistory([...history, nextSquares]);
+    setXIsNext(!xIsNext);
   }
   
   return (

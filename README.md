@@ -1,6 +1,6 @@
 # React Tic-Tac-Tutorial
 
-> Bookmark: Showing the past moves
+> Bookmark: Picking a key
 > Remember: Clear comments into comment branch
 
 

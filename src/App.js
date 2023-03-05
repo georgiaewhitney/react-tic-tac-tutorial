@@ -17,7 +17,7 @@ function Board({ xIsNext, squares, onPlay }) {
   // slice is changing data without mutating - data can be reused later
   // handleClick updates nextSquares with X to square index [i]
   // calling setSquares lets React know state of component has changes. Triggers a re-render of components that uses squares state (Board) as well as child components (Square)
-  
+
   function handleClick(i) {
     // early return allows us to check if state has already been adjusted
     // also check if player has won
@@ -31,7 +31,7 @@ function Board({ xIsNext, squares, onPlay }) {
     } else {
       nextSquares[i] = "O";
     }
-    onPlay(nextSquares)
+    onPlay(nextSquares);
     setSquares(nextSquares);
     setXIsNext(!xIsNext);
     console.log(`Square ${i} clicked`);
@@ -139,9 +139,11 @@ export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   // tracking move history
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  // keep track of which step user is viewing
+  const [currentMove, setCurrentMove] = useState(0);
 
   // read last squares array from the history
-  const currentSquares = history[history.length -1];
+  const currentSquares = history[history.length - 1];
 
   // will be called by board component to update the game
   function handlePlay(nextSquares) {
@@ -167,18 +169,16 @@ export default function Game() {
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
-  })
-  
+  });
+
   return (
     <div className="game">
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>
-          {moves}
-        </ol>
+        <ol>{moves}</ol>
       </div>
     </div>
-  )
+  );
 }

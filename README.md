@@ -1,6 +1,6 @@
 # React Tic-Tac-Tutorial
 
-> Bookmark: Implementing Time Travel
+> Bookmark: final cleanup
 > Remember: Clear comments into comment branch
 
 

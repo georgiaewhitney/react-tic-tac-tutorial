@@ -136,11 +136,14 @@ function calculateWinner(squares) {
 
 export default function Game() {
   // determining next player
-  const [xIsNext, setXIsNext] = useState(true);
+  // const [xIsNext, setXIsNext] = useState(true);
+
   // tracking move history
   const [history, setHistory] = useState([Array(9).fill(null)]);
   // keep track of which step user is viewing
   const [currentMove, setCurrentMove] = useState(0);
+  // refactored xisnext to figure odd / even using currentMove
+  const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove]
 
   // read last squares array from the history
@@ -154,12 +157,12 @@ export default function Game() {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setXIsNext(!xIsNext);
+    // setXIsNext(!xIsNext);
   }
 
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
-    setXIsNext(nextMove % 2 === 0);
+    // setXIsNext(nextMove % 2 === 0);
   }
 
   const moves = history.map((squares, move) => {

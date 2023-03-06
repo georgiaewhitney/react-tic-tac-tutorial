@@ -1,7 +1,6 @@
 # React Tic-Tac-Tutorial
 
 > Bookmark: Extras
-> Remember: Clear comments into comment branch
 
 If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
 
